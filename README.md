@@ -15,7 +15,8 @@ Rscript RunBWA_mem.R RunBWA_mem_Config_Sample11B_run_20150113.R
 ```
 ### 3. Merge `SAMs` from multiple lanes and sort resulting `BAMs`
 ```R
-Rscript MergeSAM_SortBAM.R [/path/to/folder_sequencing_run]
+Rscript MergeSAM_SortBAM.R /CIBIO/sharedCO/Exome_seq/Gandellini/alignment_test_Sample_11B/20141210_gandellini
+Rscript MergeSAM_SortBAM.R /CIBIO/sharedCO/Exome_seq/Gandellini/alignment_test_Sample_11B/20150113_gandellini
 ```
 ### 4. Merge `BAMs` from multiple sequencing runs
 ```R
