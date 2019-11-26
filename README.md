@@ -1,6 +1,8 @@
 # Pre-process Haloplex WES PE Illumina data
 ### scripts to merge and generate BAM file from multiple sequecning runs [ from raw fastq to BAM ]
 
+Following an example for a test sample.
+
 ### 1. Trimming `fastq` files
 ```R
 RScript trimmomatic.R trimmomatic_config_Sample11B_run_20141210.R
