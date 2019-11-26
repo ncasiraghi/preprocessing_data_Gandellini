@@ -5,18 +5,21 @@ Following an example for a test sample.
 
 ### 1. Trimming `fastq` files
 ```
-RScript trimmomatic.R trimmomatic_config_Sample11B_run_20141210.R
-Rscript trimmomatic.R trimmomatic_config_Sample11B_run_20150113.R
+RScript trimmomatic.R /CIBIO/sharedCO/Exome_seq/Gandellini/alignment_test_Sample_11B/20141210_gandellini
+Rscript trimmomatic.R /CIBIO/sharedCO/Exome_seq/Gandellini/alignment_test_Sample_11B/20150113_gandellini
+Rscript trimmomatic.R /CIBIO/sharedCO/Exome_seq/Gandellini/alignment_test_Sample_11B/20150304_gandellini
 ```
 ### 2. Align `trimmed-fastq` with `bwa mem`
 ```
-Rscript RunBWA_mem.R RunBWA_mem_Config_Sample11B_run_20141210.R
-Rscript RunBWA_mem.R RunBWA_mem_Config_Sample11B_run_20150113.R
+Rscript RunBWA_mem.R /CIBIO/sharedCO/Exome_seq/Gandellini/alignment_test_Sample_11B/20141210_gandellini
+Rscript RunBWA_mem.R /CIBIO/sharedCO/Exome_seq/Gandellini/alignment_test_Sample_11B/20150113_gandellini
+Rscript RunBWA_mem.R /CIBIO/sharedCO/Exome_seq/Gandellini/alignment_test_Sample_11B/20150304_gandellini
 ```
 ### 3. Merge `SAMs` from multiple lanes and sort resulting `BAMs`
 ```
-Rscript MergeSAM_SortBAM.R alignment_test_Sample_11B/20141210_gandellini
-Rscript MergeSAM_SortBAM.R alignment_test_Sample_11B/20150113_gandellini
+Rscript MergeSAM_SortBAM.R /CIBIO/sharedCO/Exome_seq/Gandellini/alignment_test_Sample_11B/20141210_gandellini
+Rscript MergeSAM_SortBAM.R /CIBIO/sharedCO/Exome_seq/Gandellini/alignment_test_Sample_11B/20150113_gandellini
+Rscript MergeSAM_SortBAM.R /CIBIO/sharedCO/Exome_seq/Gandellini/alignment_test_Sample_11B/20150304_gandellini
 ```
 ### 4. Merge `BAMs` from multiple sequencing runs
 ```
