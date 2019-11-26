@@ -4,22 +4,22 @@
 Following an example for a test sample.
 
 ### 1. Trimming `fastq` files
-```R
+```
 RScript trimmomatic.R trimmomatic_config_Sample11B_run_20141210.R
 Rscript trimmomatic.R trimmomatic_config_Sample11B_run_20150113.R
 ```
 ### 2. Align `trimmed-fastq` with `bwa mem`
-```R
+```
 Rscript RunBWA_mem.R RunBWA_mem_Config_Sample11B_run_20141210.R
 Rscript RunBWA_mem.R RunBWA_mem_Config_Sample11B_run_20150113.R
 ```
 ### 3. Merge `SAMs` from multiple lanes and sort resulting `BAMs`
-```R
+```
 Rscript MergeSAM_SortBAM.R alignment_test_Sample_11B/20141210_gandellini
 Rscript MergeSAM_SortBAM.R alignment_test_Sample_11B/20150113_gandellini
 ```
 ### 4. Merge `BAMs` from multiple sequencing runs
-```R
+```
 Rscript MergeBAM.R [bams_to_merge.tsv]
 ```
 ### 5. Run `GATK best practices` on merged-BAMs
