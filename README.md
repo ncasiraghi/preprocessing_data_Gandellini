@@ -1,5 +1,5 @@
-# preprocessing_data_Gandellini
-Scripts to pre-process WES Haloplex data: from fastq to BAM
+# Pre-process Haloplex WES PE Illumina data
+from fastq to BAM
 
 01. trimmomatic.R trimmomatic_config.R
 02. RunBWA_mem.R RunBWA_mem_[id_sequencing_run].R
