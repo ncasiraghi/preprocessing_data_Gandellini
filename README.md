@@ -3,11 +3,13 @@
 
 ### 1. Trimming `fastq` files
 ```R
-RScript trimmomatic.R trimmomatic_config.R 
+RScript trimmomatic.R trimmomatic_config_Sample11B_run_20141210.R
+Rscript trimmomatic.R trimmomatic_config_Sample11B_run_20150113.R
 ```
 ### 2. Align `trimmed-fastq` with `bwa mem`
 ```R
-Rscript RunBWA_mem.R RunBWA_mem_[id_sequencing_run].R
+Rscript RunBWA_mem.R RunBWA_mem_Config_Sample11B_run_20141210.R
+Rscript RunBWA_mem.R RunBWA_mem_Config_Sample11B_run_20150113.R
 ```
 ### 3. Merge `SAMs` from multiple lanes and sort resulting `BAMs`
 ```R
