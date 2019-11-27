@@ -8,7 +8,7 @@ if(length(args)!=1){
   quit()
 }
 
-# i.e. Rscript MergeSAM_SortBAM.R /CIBIO/sharedCO/Exome_seq/Gandellini/20161201_run164_gandellini
+# i.e. Rscript MergeSAM_SortBAM.R /CIBIO/sharedCO/Exome_seq/Gandellini/alignment_test_Sample_11B/20141210_gandellini/
 
 mainfolder = args[1]
 cat(paste("\nSample Folder:",mainfolder),"\n")
