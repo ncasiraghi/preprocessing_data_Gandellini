@@ -1,5 +1,5 @@
 # Pre-process Haloplex WES PE Illumina data
-### scripts to merge and generate BAM file from multiple sequecning runs [ from raw fastq to gatk-processed BAM ]
+### scripts to merge and generate BAM file - from raw fastq to gatk-processed BAM -
 
 Here is reported an example for a sample.
 
