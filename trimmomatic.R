@@ -1,18 +1,17 @@
 #!/usr/bin/env Rscript
 
-## Technical fasta sequences to trimm are in : /elaborazioni/sharedCO/Home_casiraghi/Prog/trimmomatic/Trimmomatic-0.32/adapters
-
 args = commandArgs(trailingOnly = T)
 
 if(length(args)!=1){
-  message("\n\tError!\n\tUsage: trimmomatic.R trimmomatic_config.R\n")
+  message("\n\tError!\n\tUsage: trimmomatic.R /path/to/samples.folder\n")
   quit()
 }
 
-configfile = args[1]
-source(configfile)
+samples.folder = args[1]
 
-trimmomatic = "java -Xmx1G -jar /elaborazioni/sharedCO/Home_casiraghi/Prog/trimmomatic/Trimmomatic-0.32/trimmomatic-0.32.jar PE -threads 20 -phred33" 
+trimmomatic <- "java -Xmx1G -jar /elaborazioni/sharedCO/Home_casiraghi/Prog/trimmomatic/Trimmomatic-0.32/trimmomatic-0.32.jar PE -threads 20 -phred33" 
+
+trimmomatic.param <- "ILLUMINACLIP:/CIBIO/sharedCO/Exome_seq/Gandellini/preprocessing_data_Gandellini/trimmomatic_adapters/TruSeq3-PE.fa:3:35:7:5:true MAXINFO:40:0.6 LEADING:3 TRAILING:3 SLIDINGWINDOW:3:15 MINLEN:40 CROP:86 HEADCROP:3"
 
 all.samples = sort(list.dirs(samples.folder,recursive = F))
 
