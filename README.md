@@ -2,6 +2,8 @@
 ### scripts to merge and generate BAM file - from raw fastq to gatk-processed BAM -
 This repository on the unitn server: `/CIBIO/sharedCO/Exome_seq/Gandellini/`
 
+Data from https://doi.org/10.1016/j.euo.2018.08.010
+
 Here is reported a step-by-step example for a sample.
 
 ```
