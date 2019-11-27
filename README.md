@@ -71,9 +71,9 @@ In script `MergeBAM.R` update variable:
 MergeSamFiles <- /path/to/Picard/MergeSamFiles.jar 
 ```
 > The `bams_to_merge.cvs` is a comma-separated file indicating multiple `BAMs` to be merged in a single one for each sample.  
-```
-# example of the bams_to_merge.csv file
 
+Example of the `bams_to_merge.csv` file:
+```
 ID_SAMPLE,/path/to/ID_SAMPLE_SeqRun1.bam
 ID_SAMPLE,/path/to/ID_SAMPLE_SeqRun2.bam
 ...
