@@ -74,10 +74,10 @@ MergeSamFiles <- /path/to/Picard/MergeSamFiles.jar
 ```
 # example of the bams_to_merge.csv file
 
-ID_SAMPLE,/path/to/ID_SAMPLE_A.bam
-ID_SAMPLE,/path/to/ID_SAMPLE_B.bam
+ID_SAMPLE,/path/to/ID_SAMPLE_SeqRun1.bam
+ID_SAMPLE,/path/to/ID_SAMPLE_SeqRun2.bam
 ...
-ID_SAMPLE,/path/to/ID_SAMPLE_N.bam
+ID_SAMPLE,/path/to/ID_SAMPLE_SeqRunN.bam
 ```
 > For each ID_SAMPLE present in the `bams_to_merge.csv` file, a folder named `ID_SAMPLE` will be created in the `output_folder` where the merged BAM file will be saved.
 ```
