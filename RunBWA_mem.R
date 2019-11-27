@@ -17,7 +17,7 @@ ReferenceFasta <- "/elaborazioni/sharedCO/Home_casiraghi/Reference_b37/human_g1k
 SamplesList = list.dirs(fastqFolder,recursive = F)
 
 for(SampleFolder in SamplesList){
-  cat(SampleFolder,"\n")
+  message(SampleFolder)
   setwd(SampleFolder)
   # Paired fastq files
   FastqFiles = sort(list.files(".",pattern = "trimmed.fastq.gz"))
@@ -59,7 +59,7 @@ for(SampleFolder in SamplesList){
                  PairedFastq$fastq_R1[id],
                  PairedFastq$fastq_R2[id],
                  ">",output) 
-    cat(cmd,file = "bwa_mem.sh")
+    cat(cmd,file = "bwa_mem.sh",sep = '\n')
     system("bash bwa_mem.sh")
   }  
 }
