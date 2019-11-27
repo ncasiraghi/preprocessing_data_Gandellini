@@ -45,7 +45,7 @@ In script `RunBWA_mem.R` update variables:
 BWA_mem <- /path/to/bwa 
 ReferenceFasta <- path/to/reference.fa
 ```
-> The `SampleSheet.csv`, present in each sample folder, is used to build up the @RG 
+> The `SampleSheet.csv`, present in each sample folder, is used to build up the @RG<br />
 > In this study the alignment has been performed on the Human Reference Genome `humanG1Kv37` (`human_g1k_v37.fasta, GRCh37`)
 ```
 # Usage example
