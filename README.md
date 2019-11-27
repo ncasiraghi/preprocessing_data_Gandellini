@@ -82,11 +82,13 @@ ID_SAMPLE,/path/to/ID_SAMPLE_SeqRunN.bam
 > For each ID_SAMPLE present in the `bams_to_merge.csv` file, a folder named `ID_SAMPLE` will be created in the `output_folder` where the merged BAM file will be saved.
 ```
 # Usage example
-Rscript MergeBAM.R [bams_to_merge.csv] [output_folder]
+Rscript MergeBAM.R alignment_test_Sample_11B/bams_merged/bams_to_merge.csv alignment_test_Sample_11B/bams_merged
 ```
 > `samtools` required.
 
 ### 5. Run `GATK best practices` on merged-BAMs
-`CREATE_process_BAMs_with_GATK.R`
-`process_BAMs_with_GATK.R [this use preprocessing_inputBAM.vMB.sh]`
-> Script with GATK Best Practices is 'gatk/gatk_best_practices.sh' in this repository.
+```
+# Usage example
+Rscript RunGATK.R alignment_test_Sample_11B/bams_merged alignment_test_Sample_11B/bams_merged_gatk
+```
+> Script with GATK Best Practices is 'gatk/gatk_best_practices.sh' saved in this repository.
