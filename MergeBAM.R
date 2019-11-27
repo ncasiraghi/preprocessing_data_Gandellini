@@ -2,21 +2,21 @@
 
 args <- commandArgs(trailingOnly = TRUE)
 if(length(args)!=2){
-  message("\n\tError!\n\tUsage: MergeBAM.R /path/to/samples.folder\n")
+  message("\n\tError!\n\tUsage: Rscript MergeBAM.R [bams_to_merge.csv] [output_folder]\n")
   quit()
 }
 
 csv <- args[1]
-OUTFOLDER <- args[1]
+OUTFOLDER <- args[2]
 
 MergeSamFiles <- "java -Xmx2g -jar /scratch/Tools/Picard/MergeSamFiles.jar"
 
-SIF = read.delim(csv,as.is=T,sep = ',') 
+SIF = read.delim(csv,as.is=T,header = F,stringsAsFactors = F,sep = ',') 
 
 samplesname <- unique(SIF[,1]) 
 
 for(SAMPLE in samplesname){
-  message(paste("\n[",Sys.time() ,"]\t",SAMPLE,'\n'))
+  message(paste("\n[",Sys.time() ,"]\t",SAMPLE))
   # Create Merged SAM file
   SAMPLE_folder <- file.path(OUTFOLDER,SAMPLE) 
   dir.create(SAMPLE_folder)
