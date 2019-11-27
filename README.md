@@ -1,7 +1,8 @@
 # Pre-process Haloplex WES PE Illumina data
 ### scripts to merge and generate BAM file - from raw fastq to gatk-processed BAM -
+This repository on the unitn server: `/CIBIO/sharedCO/Exome_seq/Gandellini/`
 
-Here is reported an example for a sample.
+Here is reported a step-by-step example for a sample.
 
 ```
 # sequencing runs folder:
