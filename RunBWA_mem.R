@@ -24,7 +24,6 @@ for(SampleFolder in SamplesList){
   fastq_R1 = grep(FastqFiles,pattern = "_R1_",value = T) 
   fastq_R2 = grep(FastqFiles,pattern = "_R2_",value = T)
   PairedFastq = as.data.frame(cbind(fastq_R1,fastq_R2),stringsAsFactors = F) 
-  #PairedFastq$Lane = sapply(strsplit(PairedFastq$fastq_R1,split = "_"),function(x) x[3])
   for(j in 1:nrow(PairedFastq)){
     PairedFastq$Lane[j] <- grep(unlist(strsplit(PairedFastq$fastq_R1[j],split = "_")),pattern = "^L00[[:digit:]]$",value = T)
   }
@@ -52,15 +51,18 @@ for(SampleFolder in SamplesList){
   dir.create("./SAM_mem")
   for(id in 1:nrow(PairedFastq)){
     output = paste0("./SAM_mem/",PairedFastq$SAM[id])
-    cmd <- paste(BWA_mem,
-                 "-t",number_of_threads,
-                 "-R",table$ReadGroup[which(table$Lane==PairedFastq$Lane[id])],
-                 ReferenceFasta,
-                 PairedFastq$fastq_R1[id],
-                 PairedFastq$fastq_R2[id],
-                 ">",output) 
-    cat(cmd,file = "bwa_mem.sh",sep = '\n')
-    system("bash bwa_mem.sh")
+    checkRG <- table$ReadGroup[which(table$Lane==PairedFastq$Lane[id])]
+    if(length(checkRG)>0){
+      cmd <- paste(BWA_mem,
+                   "-t",number_of_threads,
+                   "-R",table$ReadGroup[which(table$Lane==PairedFastq$Lane[id])],
+                   ReferenceFasta,
+                   PairedFastq$fastq_R1[id],
+                   PairedFastq$fastq_R2[id],
+                   ">",output) 
+      cat(cmd,file = "bwa_mem.sh",sep = '\n')
+      system("bash bwa_mem.sh")
+    }
   }  
 }
 cat("[ DONE ]\n")
