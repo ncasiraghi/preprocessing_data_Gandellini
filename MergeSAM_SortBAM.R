@@ -1,17 +1,15 @@
 #!/usr/bin/env Rscript
 
-# Generate sorted bam file starting from unmerged sam files
-
 args <- commandArgs(trailingOnly = TRUE)
 if(length(args)!=1){
-  message("\n\tError!\n\tUsage: MergeSAM_SortBAM.R path_to_run_folder\n")
+  message("\n\tError!\n\tUsage: MergeSAM_SortBAM.R /path/to/samples.folder\n")
   quit()
 }
 
-# i.e. Rscript MergeSAM_SortBAM.R /CIBIO/sharedCO/Exome_seq/Gandellini/alignment_test_Sample_11B/20141210_gandellini/
-
 mainfolder = args[1]
 cat(paste("\nSample Folder:",mainfolder),"\n")
+
+MergeSamFiles <- "java -Xmx2g -jar /scratch/Tools/Picard/MergeSamFiles.jar"
 
 available = grep(list.dirs(mainfolder,recursive = F),pattern = 'Sample_',value = T)
 
@@ -23,7 +21,7 @@ for(sample in available){
   INPUT=paste(paste0('INPUT=',samfiles),collapse = ' ')
   SAM=paste0('OUTPUT=',sample,'/SAM_mem/Merged/',basename(sample),'.sam')
   TMP=paste0('TMP_DIR=',sample,'/SAM_mem/Merged/tmp_MergeSAM')
-  cmd=paste("java -Xmx2g -jar /scratch/Tools/Picard/MergeSamFiles.jar",INPUT,"VALIDATION_STRINGENCY=LENIENT",TMP,SAM,sep=' ')
+  cmd=paste(MergeSamFiles,INPUT,"VALIDATION_STRINGENCY=LENIENT",TMP,SAM,sep=' ')
   system(cmd)  
   # Create sorted BAM file and index BAI
   dir.create(paste0(sample,'/BAM_mem'))
