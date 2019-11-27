@@ -89,7 +89,7 @@ Rscript MergeBAM.R alignment_test_Sample_11B/bams_merged/bams_to_merge.csv align
 > `samtools` required.
 
 ### 5. Run `GATK best practices` on merged-BAMs
-In script `MergeSAM_SortBAM.R` update variable:
+In script `RunGATK.R` update variable:
 ```R
 script.path <- /path/to/gatk/gatk_best_practices.sh 
 ```
