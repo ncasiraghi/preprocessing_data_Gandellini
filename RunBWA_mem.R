@@ -1,13 +1,17 @@
 #!/usr/bin/env Rscript
 
-# source configuration file
 args <- commandArgs(trailingOnly = TRUE)
 if(length(args)!=1){
-  message("\n\tError!\n\tUsage: RunBWA_mem.R RunBWA_mem_Config.R\n")
+  message("\n\tError!\n\tUsage: RunBWA_mem.R /path/to/samples.folder\n")
   quit()
 }
-cat(paste("Configuration file:",args[1]),"\n")
-source(args[1])
+
+fastqFolder <- args[1]
+
+number_of_threads <- 20
+
+BWA_mem <- "/usr/bin/bwa mem -M"
+ReferenceFasta <- "/elaborazioni/sharedCO/Home_casiraghi/Reference_b37/human_g1k_v37.fasta"
 
 # start processing
 SamplesList = list.dirs(fastqFolder,recursive = F)
