@@ -102,4 +102,4 @@ Rscript RunGATK.R [/path/to/folder_with_merged_BAMs] [output_folder]
 
 Rscript RunGATK.R alignment_test_Sample_11B/bams_merged alignment_test_Sample_11B/bams_merged_gatk
 ```
-> `openjdk-7` required. Singularity image is saved as `gatk/openjdk-7-slim.simg` in this repository.
+> `openjdk-7` required. Singularity image is saved on the unitn server: `/SPICE/Casiraghi/openjdk-7-slim.simg`
