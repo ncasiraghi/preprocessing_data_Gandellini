@@ -43,13 +43,13 @@ dedupBAM=$sortBAM
 
 ## Local realignment around indels
 #  Realign BAM around indels > STEP1 <
-cmd=(singularity exec -B /CIBIO -B /scratch -B /elaborazioni -B /SPICE /CIBIO/sharedCO/Exome_seq/Gandellini/preprocessing_data_Gandellini/gatk/openjdk-7-slim.simg /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin/java -Xmx16G -jar /scratch/Tools/GATK/GenomeAnalysisTK.jar -S SILENT -I $dedupBAM -R $REF -T RealignerTargetCreator -o $outFOLDER'/'target.intervals -nt $ncores)
+cmd=(singularity exec -B /CIBIO -B /scratch -B /elaborazioni -B /SPICE /SPICE/Casiraghi/openjdk-7-slim.simg /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin/java -Xmx16G -jar /scratch/Tools/GATK/GenomeAnalysisTK.jar -S SILENT -I $dedupBAM -R $REF -T RealignerTargetCreator -o $outFOLDER'/'target.intervals -nt $ncores)
 echo "${cmd[@]}"
 "${cmd[@]}"
 
 # realign BAM around indels > STEP2 <
 realBAM=$outFOLDER'/'$(basename "$dedupBAM" .bam).realigned.bam
-cmd=(singularity exec -B /CIBIO -B /scratch -B /elaborazioni -B /SPICE /CIBIO/sharedCO/Exome_seq/Gandellini/preprocessing_data_Gandellini/gatk/openjdk-7-slim.simg /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin/java -Xmx16G -jar /scratch/Tools/GATK/GenomeAnalysisTK.jar -S SILENT -I $dedupBAM -R $REF -T IndelRealigner -targetIntervals $outFOLDER'/'target.intervals -o $realBAM)
+cmd=(singularity exec -B /CIBIO -B /scratch -B /elaborazioni -B /SPICE /SPICE/Casiraghi/openjdk-7-slim.simg /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin/java -Xmx16G -jar /scratch/Tools/GATK/GenomeAnalysisTK.jar -S SILENT -I $dedupBAM -R $REF -T IndelRealigner -targetIntervals $outFOLDER'/'target.intervals -o $realBAM)
 echo "${cmd[@]}"
 "${cmd[@]}"
 
@@ -57,12 +57,12 @@ echo "${cmd[@]}"
 #rm *.dedup.bam *.dedup.bam.bai
 
 ## Base quality score recalibration
-cmd=(singularity exec -B /CIBIO -B /scratch -B /elaborazioni -B /SPICE /CIBIO/sharedCO/Exome_seq/Gandellini/preprocessing_data_Gandellini/gatk/openjdk-7-slim.simg /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin/java -Xmx16G -jar /scratch/Tools/GATK/GenomeAnalysisTK.jar -T BaseRecalibrator -R $REF -I $realBAM -knownSites /elaborazioni/sharedCO/CO_Shares/referenceTables/BQS_recalibration_knownSites/hapmap_3.3.b37.vcf -knownSites /elaborazioni/sharedCO/CO_Shares/referenceTables/BQS_recalibration_knownSites/1000G_phase1.snps.high_confidence.b37.vcf  -knownSites /elaborazioni/sharedCO/CO_Shares/referenceTables/BQS_recalibration_knownSites/1000G_omni2.5.b37.vcf -o $outFOLDER'/'base_quality_scores.txt -nct $ncores) 
+cmd=(singularity exec -B /CIBIO -B /scratch -B /elaborazioni -B /SPICE /SPICE/Casiraghi/openjdk-7-slim.simg /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin/java -Xmx16G -jar /scratch/Tools/GATK/GenomeAnalysisTK.jar -T BaseRecalibrator -R $REF -I $realBAM -knownSites /elaborazioni/sharedCO/CO_Shares/referenceTables/BQS_recalibration_knownSites/hapmap_3.3.b37.vcf -knownSites /elaborazioni/sharedCO/CO_Shares/referenceTables/BQS_recalibration_knownSites/1000G_phase1.snps.high_confidence.b37.vcf  -knownSites /elaborazioni/sharedCO/CO_Shares/referenceTables/BQS_recalibration_knownSites/1000G_omni2.5.b37.vcf -o $outFOLDER'/'base_quality_scores.txt -nct $ncores) 
 echo "${cmd[@]}"
 "${cmd[@]}"
 
 recalBAM=$outFOLDER'/'$(basename $realBAM .bam).recalibrated.bam
-cmd=(singularity exec -B /CIBIO -B /scratch -B /elaborazioni -B /SPICE /CIBIO/sharedCO/Exome_seq/Gandellini/preprocessing_data_Gandellini/gatk/openjdk-7-slim.simg /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin/java -Xmx16G -jar /scratch/Tools/GATK/GenomeAnalysisTK.jar -T PrintReads -R $REF -I $realBAM -o $recalBAM --BQSR $outFOLDER'/'base_quality_scores.txt -nct $ncores)
+cmd=(singularity exec -B /CIBIO -B /scratch -B /elaborazioni -B /SPICE /SPICE/Casiraghi/openjdk-7-slim.simg /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin/java -Xmx16G -jar /scratch/Tools/GATK/GenomeAnalysisTK.jar -T PrintReads -R $REF -I $realBAM -o $recalBAM --BQSR $outFOLDER'/'base_quality_scores.txt -nct $ncores)
 echo "${cmd[@]}"
 "${cmd[@]}"
 
