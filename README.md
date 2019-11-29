@@ -1,6 +1,7 @@
 # Pre-process Haloplex WES PE Illumina data
 ### scripts to merge and generate BAM file - from raw fastq to gatk-processed BAM -
 This repository on the unitn server: `/CIBIO/sharedCO/Exome_seq/Gandellini/`
+
 The alignment test on the unitn server: `/scratch/sharedCO/Casiraghi/Gandellini/alignment_test_Sample_11B/`
 
 Data from https://doi.org/10.1016/j.euo.2018.08.010
