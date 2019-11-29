@@ -2,15 +2,17 @@
 ### scripts to merge and generate BAM file - from raw fastq to gatk-processed BAM -
 This repository on the unitn server: `/CIBIO/sharedCO/Exome_seq/Gandellini/`
 
+The alignment test on the unitn server: `/scratch/sharedCO/Casiraghi/Gandellini/alignment_test_Sample_11B/`
+
 Data from https://doi.org/10.1016/j.euo.2018.08.010
 
 Here is reported a step-by-step example for a sample that has been sequenced in 3 runs.
 
 ```
 # sequencing runs folder:
-SR1=/scratch/sharedCO/Casiraghi/Gandellini/alignment_test_Sample_11B/20141210_gandellini
-SR2=/scratch/sharedCO/Casiraghi/Gandellini/alignment_test_Sample_11B/20150113_gandellini
-SR3=/scratch/sharedCO/Casiraghi/Gandellini/alignment_test_Sample_11B/20150304_gandellini
+SR1=alignment_test_Sample_11B/20141210_gandellini
+SR2=alignment_test_Sample_11B/20150113_gandellini
+SR3=alignment_test_Sample_11B/20150304_gandellini
 ```
 Each sequencing run folder contains a subfolder for each sample with raw fastq files:
 ```
@@ -71,9 +73,9 @@ In script `MergeBAM.R` update variable:
 MergeSamFiles <- /path/to/Picard/MergeSamFiles.jar 
 ```
 > The `bams_to_merge.cvs` is a comma-separated file indicating multiple `BAMs` to be merged in a single one for each sample.  
-```
-# example of the bams_to_merge.csv file
 
+Example of the `bams_to_merge.csv` file:
+```
 ID_SAMPLE,/path/to/ID_SAMPLE_SeqRun1.bam
 ID_SAMPLE,/path/to/ID_SAMPLE_SeqRun2.bam
 ...
@@ -83,10 +85,21 @@ ID_SAMPLE,/path/to/ID_SAMPLE_SeqRunN.bam
 ```
 # Usage example
 Rscript MergeBAM.R [bams_to_merge.csv] [output_folder]
+
+Rscript MergeBAM.R alignment_test_Sample_11B/bams_merged/bams_to_merge.csv alignment_test_Sample_11B/bams_merged
 ```
 > `samtools` required.
 
 ### 5. Run `GATK best practices` on merged-BAMs
-`CREATE_process_BAMs_with_GATK.R`
-`process_BAMs_with_GATK.R [this use preprocessing_inputBAM.vMB.sh]`
-> Script with GATK Best Practices is 'gatk/gatk_best_practices.sh' in this repository.
+In script `RunGATK.R` update variable:
+```R
+script.path <- /path/to/gatk/gatk_best_practices.sh 
+```
+> Script with GATK Best Practices is 'gatk/gatk_best_practices.sh' saved in this repository.
+```
+# Usage example
+Rscript RunGATK.R [/path/to/folder_with_merged_BAMs] [output_folder]
+
+Rscript RunGATK.R alignment_test_Sample_11B/bams_merged alignment_test_Sample_11B/bams_merged_gatk
+```
+> `openjdk-7` required. Singularity image is saved as `gatk/openjdk-7-slim.simg` in this repository.
